@@ -8,8 +8,15 @@ from cgi import parse_qs, escape
 # 
 # parse_qs also has SO 2886611
 
+# test cases, SEE the print output on line 19
+# http://localhost:8080/
+# http://localhost:8080/?subject=john
+# http://localhost:8080/?subject=john&name=george
+# http://localhost:8080/?subject=john&subject=george
+
 def hello_world(environ, start_response):
     parameters = parse_qs(environ.get('QUERY_STRING', ''))
+    print('parameters is {}'.format(parameters))
     if 'subject' in parameters:
         subject = escape(parameters['subject'][0])
     else:

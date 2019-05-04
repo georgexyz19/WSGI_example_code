@@ -4,6 +4,18 @@ from traceback import format_tb
 
 from cgi import parse_qs, escape
 
+'''
+ sys.exc_info() : This function returns a tuple of three values that give information 
+ about the exception that is currently being handled. 
+
+If no exception is being handled anywhere on the stack, a tuple containing three None 
+values is returned. Otherwise, the values returned are (type, value, traceback). 
+Their meaning is: type gets the type of the exception being handled (a subclass of 
+BaseException); value gets the exception instance (an instance of the exception type); 
+traceback gets a traceback object (see the Reference Manual) which encapsulates 
+the call stack at the point where the exception originally occurred.
+
+'''
 
 class ExceptionMiddleware(object):
     '''The middleware we use.'''
@@ -44,11 +56,12 @@ def hello_world(environ, start_response):
         subject = escape(parameters['subject'][0])
     else:
         subject = 'world'
-        
-    # a = 10 / 0  # to create divide-by-0 exception
-
+       
     start_response('200 OK', [('Content-Type', 'text/html')])
     mystr = 'Hello {}'.format(subject)
+    
+    #a = 10 / 0  # to create divide-by-0 exception
+
     return [mystr.encode('utf-8')]
 
 
