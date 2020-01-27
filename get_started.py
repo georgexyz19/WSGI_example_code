@@ -15,7 +15,16 @@ from cgi import parse_qs, escape
 # http://localhost:8080/?subject=john&subject=george
 
 def hello_world(environ, start_response):
+
+    # check environ values, it is a dict
+    print('\nStart printing dict environ')
+    d = environ
+    for i, (k, v) in enumerate(sorted(d.items()), start=1):
+        print(i, k, '->', v)
+    print('End printing dict environ\n')
+
     parameters = parse_qs(environ.get('QUERY_STRING', ''))
+    
     print('parameters is {}'.format(parameters))
     if 'subject' in parameters:
         subject = escape(parameters['subject'][0])
