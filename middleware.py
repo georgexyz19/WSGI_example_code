@@ -10,7 +10,7 @@ from cgi import parse_qs, escape
 
 If no exception is being handled anywhere on the stack, a tuple containing three None 
 values is returned. Otherwise, the values returned are (type, value, traceback). 
-Their meaning is: type gets the type of the exception being handled (a subclass of 
+Their meanings are: type gets the type of the exception being handled (a subclass of 
 BaseException); value gets the exception instance (an instance of the exception type); 
 traceback gets a traceback object (see the Reference Manual) which encapsulates 
 the call stack at the point where the exception originally occurred.
@@ -44,11 +44,21 @@ class ExceptionMiddleware(object):
             except:
                 pass
 
-            yield '\n'.join(traceback).encode('utf-8')
+            yield '<br/>'.join(traceback).encode('utf-8')
 
         if hasattr(appiter, 'close'):
             appiter.close()
 
+'''
+http://localhost:8080/
+Hello World
+
+http://localhost:8080/?subject=john
+Result: Traceback (most recent call last):
+File "middleware.py", line 31, in __call__ appiter = self.app(environ, start_response)
+File "middleware.py", line 68, in hello_world raise ValueError('Cannot be john')
+ValueError: Cannot be john
+'''
 
 def hello_world(environ, start_response):
     parameters = parse_qs(environ.get('QUERY_STRING', ''))
@@ -60,7 +70,10 @@ def hello_world(environ, start_response):
     start_response('200 OK', [('Content-Type', 'text/html')])
     mystr = 'Hello {}'.format(subject)
 
-    a = 10 / 0  # to create divide-by-0 exception
+    if subject == 'john':
+        raise ValueError('Cannot be john')
+
+    # a = 10 / 0  # create divide-by-0 exception
 
     return [mystr.encode('utf-8')]
 
