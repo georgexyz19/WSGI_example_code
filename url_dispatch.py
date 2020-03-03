@@ -39,10 +39,18 @@ urls = [
 # https://docs.python.org/3/library/re.html?highlight=regular%20expression#match-objects
 # this link shows what match.groups is
 # example :
-# >>> m = re.match(r"(\d+)\.(\d+)", "24.1632")
+# >>> m = re.match(r'(\d+)\.(\d+)', '24.1632')
 # >>> m.groups()
 # ('24', '1632')
-
+# >>> m.group()
+# '24.1632'
+# >>> m.group(0)
+# '24.1632'
+# >>> m.group(1)
+# '24'
+# >>> m.group(2)
+# '1632
+#
 # Test cases:
 # http://localhost:8080/
 # http://localhost:8080/hello/
