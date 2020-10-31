@@ -2,7 +2,9 @@
 from sys import exc_info
 from traceback import format_tb
 
-from cgi import parse_qs, escape
+# from cgi import parse_qs, escape
+from urllib.parse import parse_qs   # for python 3.8
+from html import escape
 
 '''
  sys.exc_info() : This function returns a tuple of three values that give information 

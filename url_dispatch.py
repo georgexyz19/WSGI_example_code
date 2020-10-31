@@ -1,5 +1,11 @@
 import re
-from cgi import escape
+# from cgi import escape   # for Python 3.8
+from html import escape
+
+# Use gunicorn, the environ variable is more clear
+# http://127.0.0.1:8000/foo?subject=john
+# PATH_INFO -> /foo
+# QUERY_STRING -> subject=john
 
 
 def index(environ, start_response):
