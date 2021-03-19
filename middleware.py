@@ -12,10 +12,11 @@ from html import escape
 
 If no exception is being handled anywhere on the stack, a tuple containing three None 
 values is returned. Otherwise, the values returned are (type, value, traceback). 
-Their meanings are: type gets the type of the exception being handled (a subclass of 
-BaseException); value gets the exception instance (an instance of the exception type); 
-traceback gets a traceback object (see the Reference Manual) which encapsulates 
-the call stack at the point where the exception originally occurred.
+Their meanings are: 
+    type - gets the type of the exception being handled (a subclass of BaseException); 
+    value - gets the exception instance (an instance of the exception type); 
+    traceback - gets a traceback object (see the Reference Manual) which encapsulates 
+        the call stack at the point where the exception originally occurred.
 
 '''
 
@@ -82,6 +83,12 @@ def hello_world(environ, start_response):
 
 if __name__ == '__main__':
     from wsgiref.simple_server import make_server
+
+    # application is an ExceptionMiddleware class instance
+    # applicaiton(environ, start_response) call is actually 
+    #   ExcetionMiddleware(application, environ, start_response) call
     application = ExceptionMiddleware(hello_world)
+
     srv = make_server('localhost', 8080, application)
+    print('wsgiref is serving the WSGI app ......')
     srv.serve_forever()

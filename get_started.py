@@ -3,6 +3,7 @@
 from urllib.parse import parse_qs   # for python 3.8
 from html import escape
 
+# SO - Stackoverflow.com
 # escape see SO 1061697, < to &lt; > to &gt; and & to &amp;
 # a second 'quote' parameter, escape double quote char (") so you can use the 
 #   resulting value in a XML/HTML attribute.  html.escape does the same except
@@ -22,7 +23,16 @@ from html import escape
 # you can run the app with a real WSGI server like gunicorn
 # in you virtual env `pip install gunicorn`
 # run command `gunicorn -w 4 get_started:hello_world`
+# get_started file name or py module name
 # the environ dict has 29 keys running with gunicorn vs 82 keys w/ wsgiref
+
+# update 3/19/2021
+# The browser will send a second request automatically
+# 127.0.0.1 - - [19/Mar/2021 11:12:00] "GET /favicon.ico HTTP/1.1" 200 11
+
+# The QUERY_STRING key -> value look like this `subject=john&name=george` 
+#  for case number 3 above
+
 
 def hello_world(environ, start_response):
 
