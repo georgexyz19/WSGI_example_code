@@ -34,7 +34,7 @@ def hello(environ, start_response):
 
 
 def not_found(environ, start_response):
-    start_response('200 OK', [('Content-Type', 'text/html')])
+    start_response('404 NOT FOUND', [('Content-Type', 'text/html')])
     mystr = 'Not Found'
     return [mystr.encode('utf-8')]
 
