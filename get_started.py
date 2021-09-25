@@ -26,11 +26,16 @@ from html import escape
 # get_started file name or py module name
 # the environ dict has 29 keys running with gunicorn vs 82 keys w/ wsgiref
 
+# gunicorn does not work in Windows, use waitress instead
+# pip install waitress
+# waitress-serve --listen=*:8000 get_started:hello_world
+
 # update 3/19/2021
 # The browser will send a second request automatically
 # 127.0.0.1 - - [19/Mar/2021 11:12:00] "GET /favicon.ico HTTP/1.1" 200 11
 
 # The QUERY_STRING key -> value look like this `subject=john&name=george` 
+# PATH_INFO -> is `/`
 #  for case number 3 above
 
 
