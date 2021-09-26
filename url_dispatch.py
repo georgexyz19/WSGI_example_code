@@ -45,6 +45,8 @@ urls = [
     (r'^hello/(.+)$', hello),
 ]
 
+# https://developers.google.com/edu/python/regular-expressions
+# Re module basics by Nick Parlante
 
 # https://docs.python.org/3/library/re.html?highlight=regular%20expression#match-objects
 # this link shows what match.groups is
@@ -54,14 +56,13 @@ urls = [
 # ('24', '1632')
 # >>> m.group()
 # '24.1632'
-# >>> m.group(0)
+# >>> m.group(0) # whole thing
 # '24.1632'
 # >>> m.group(1)
 # '24'
 # >>> m.group(2)
 # '1632
 #
-
 
 def application(environ, start_response):
     path = environ.get('PATH_INFO', '').lstrip('/')
