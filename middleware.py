@@ -8,7 +8,8 @@ from html import escape
 
 '''
  sys.exc_info() : This function returns a tuple of three values that give information 
- about the exception that is currently being handled. 
+ about the exception that is currently being handled. Normally used in except section 
+ of code. 
 
 If no exception is being handled anywhere on the stack, a tuple containing three None 
 values is returned. Otherwise, the values returned are (type, value, traceback). 
@@ -84,8 +85,8 @@ if __name__ == '__main__':
     from wsgiref.simple_server import make_server
 
     # application is an ExceptionMiddleware class instance
-    # applicaiton(environ, start_response) call is actually 
-    #   ExcetionMiddleware(application, environ, start_response) call
+    # applicaiton(environ, start_response) call actually 
+    #   runs __call__ method in the class
     application = ExceptionMiddleware(hello_world)
 
     srv = make_server('localhost', 8080, application)

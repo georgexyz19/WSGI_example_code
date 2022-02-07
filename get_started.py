@@ -8,6 +8,25 @@ from html import escape
 # a second 'quote' parameter, escape double quote char (") so you can use the 
 #   resulting value in a XML/HTML attribute.  html.escape does the same except
 #   that quote defaults to True
+
+# if we open the file 
+# /home/george/.pyenv/versions/3.9.7/lib/python3.9/html/__init__.py
+# the escape function is defined right there
+# def escape(s, quote=True):
+#     """
+#     Replace special characters "&", "<" and ">" to HTML-safe sequences.
+#     If the optional flag quote is true (the default), the quotation mark
+#     characters, both double quote (") and single quote (') characters are also
+#     translated.
+#     """
+#     s = s.replace("&", "&amp;") # Must be done first!
+#     s = s.replace("<", "&lt;")
+#     s = s.replace(">", "&gt;")
+#     if quote:
+#         s = s.replace('"', "&quot;")
+#         s = s.replace('\'', "&#x27;")
+#     return s
+
 # 
 # parse_qs also has SO 2886611, qs - query string, removed in python 3.8
 #   data are returned as a dictionary
